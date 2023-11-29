@@ -10,7 +10,7 @@ def api_call():
     response = requests.get("https://jsonplaceholder.typicode.com/users")
     if response.status_code == 200:
         users_info = response.json()
-        logger.info(f"Response: {users_info}")
+        logger.debug(f"Response: {users_info}")
         return users_info
     else:
         error_message = f"The API call failed. Response status code: {response.status_code}"
