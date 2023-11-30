@@ -1,8 +1,6 @@
-from adapters import ApiAdapter
-from adapters import CsvAdapter
-from adapters import SQLiteAdapter
+from adapters import ApiHotelAdapter, CsvAdapter, SQLiteAdapter
 from infraestructure import SQLiteInfraestructure
-from app import DFClean
+from app import DFClean, UserHotelClean
 import pandas
 import logging
 
@@ -10,7 +8,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 
-response = ApiAdapter.api_call()
+response = ApiHotelAdapter.api_call_hotel()
+response = UserHotelClean.getUserName(response)
 
 hotel_dataframe = CsvAdapter.csv_read()
 hotel_dataframe = DFClean.df_clean_null_id(hotel_dataframe)
