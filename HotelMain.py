@@ -10,7 +10,7 @@ logger = logging.getLogger()
 #Retrieving API hotel info
 response = ApiHotelAdapter.api_call_hotel()
 #Adding first names to the API hotel info
-guests_names, response = UserHotelTransform.addUserName(response)
+guests_names, response = UserHotelTransform.addUserFirstName(response)
 #Retrieving API gender info
 gender_response = GenderApiAdapter.api_call_gender(response, guests_names)
 #Adding gender to the API hotel info

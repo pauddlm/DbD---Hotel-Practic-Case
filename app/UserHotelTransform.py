@@ -3,7 +3,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
-def addUserName(response):
+def addUserFirstName(response):
     #Function that retrieves the first name of a person.
 
     guests_names = []
