@@ -15,17 +15,13 @@ guests_names, response = UserHotelTransform.addUserFirstName(response)
 gender_response = GenderApiAdapter.api_call_gender(response, guests_names)
 #Adding gender to the API hotel info
 response = UserHotelTransform.addGender(gender_response, response)
-logger.info(f"Response with genders: {response}")
+#Generating SQLite table with the enriched response
+SQLiteInfraestructure.create_infraestructure_sqlite_hotel_api(response)
 
-
+#Reading CSV and transforming it into a pandas dataframe
 hotel_dataframe = CsvAdapter.csv_read()
-hotel_dataframe = DFTransform.df_clean_null_id(hotel_dataframe)
+#Applying some transformations to the dataframe
+hotel_dataframe = DFTransform.df_clean_id(hotel_dataframe)
+SQLiteInfraestructure.create_infraestructure_sqlite_hotel_csv(hotel_dataframe)
 
-#SQLiteInfraestructure.create_infraestructure_sqlite(response)
 
-# Llamada a la función para recuperar todos los datos de dim_users
-all_users_data = SQLiteAdapter.select_all_from_dim_users()
-
-# Imprimir los resultados
-for user_data in all_users_data:
-    logger.debug(user_data)

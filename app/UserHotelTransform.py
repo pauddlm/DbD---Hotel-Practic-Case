@@ -25,7 +25,6 @@ def addUserFirstName(response):
 def addGender(gender_response, response):
     #Function that adds the gender of a guest to the response.
     gender_info_map = retrieveGender(gender_response)
-    logger.info(f"Genderinfomap: {gender_info_map}")
     for guest in response:
         #Let us assume that in this case there are no repeated first names.
         name = guest['first_name']
