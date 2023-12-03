@@ -4,12 +4,13 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 def addUserFirstName(response):
-    #Function that retrieves the first name of a person.
+    #Function that retrieves the first name of a person
 
     guests_names = []
     for guest in response:
         first_name = guest['name']
         name_parts = first_name.split()
+        #If the name contains Mrs., we want the second position of the list
         if 'Mrs.' in name_parts:
             name = name_parts[1]
         else:
@@ -23,10 +24,10 @@ def addUserFirstName(response):
     return guests_names, response
     
 def addGender(gender_response, response):
-    #Function that adds the gender of a guest to the response.
+    #Function that adds the gender of a guest to the response
     gender_info_map = retrieveGender(gender_response)
     for guest in response:
-        #Let us assume that in this case there are no repeated first names.
+        #Let us assume that in this exercise there are no repeated first names
         name = guest['first_name']
         if name in gender_info_map:
             guest['gender'] = gender_info_map[name]

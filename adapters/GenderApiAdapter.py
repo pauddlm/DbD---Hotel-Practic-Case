@@ -1,13 +1,12 @@
 import requests
 import logging
-from app import UserHotelTransform
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 def api_call_gender(response, guests_names):
-    #Function that calls an external API and retrieves the gender given the name.
- 
+    #Function that calls an external API and retrieves the gender given a first name
+
     # Endpoint url
     url = "https://api.genderize.io/"
     # Parameters of the requests with the names
@@ -19,4 +18,5 @@ def api_call_gender(response, guests_names):
         logger.debug(f"Gender information of the guests: {gender_response}")
         return gender_response
     else:
-        logger.error(f"The API call to genderize.io failed. Response status code: {genderize_response.status_code}")
+        error_message = f"The API call to genderize.io failed. Response status code: {genderize_response.status_code}"
+        raise Exception(error_message)

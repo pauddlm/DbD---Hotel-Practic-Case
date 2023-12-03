@@ -39,18 +39,17 @@ def create_infraestructure_sqlite_hotel_api(users_info):
 
     #Commit the changes and confirm the connexion
     conexion.commit()
-    logger.info(f"SQLite table created successfully.")
+    logger.info(f"SQLite table dim_users created or updated successfully.")
     conexion.close()
 
 def create_infraestructure_sqlite_hotel_csv(hotel_dataframe):
     # Creating a sqlite database
     conexion = sqlite3.connect('dbd_hotel_resorts.db')
-    cursor = conexion.cursor()
 
     # Populating a table with the hotel CSV data
     hotel_dataframe.to_sql('dim_hotels', conexion, if_exists='replace', index=False)
 
-
     # Commit the changes and confirm the connection
     conexion.commit()
+    logger.info(f"SQLite table dim_hotels created or updated successfully.")
     conexion.close()
